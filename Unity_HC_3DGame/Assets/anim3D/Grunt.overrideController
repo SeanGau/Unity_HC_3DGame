@@ -7,23 +7,23 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Grunt
-  m_Controller: {fileID: 9100000, guid: 7714df606835d12488172053587dc68f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2eeb9c266fdc4e14290207ed4dc92d83, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: -203655887218126122, guid: 50d9b6bfdb8b5614e8d55d6657b575cc,
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 7d67817daed33784bb3f442e765f625b,
       type: 3}
     m_OverrideClip: {fileID: 7400000, guid: f10541572d6d93144ab62d62774e6af5, type: 2}
-  - m_OriginalClip: {fileID: -203655887218126122, guid: a3f3e263ee6e719459ab68da008ba694,
-      type: 3}
-    m_OverrideClip: {fileID: 7400000, guid: 005ef329f9069a341a4c65ac96ebd0c1, type: 2}
-  - m_OriginalClip: {fileID: -203655887218126122, guid: 66a616e2ee10bc84d8e01a30336ca622,
-      type: 3}
-    m_OverrideClip: {fileID: 7400000, guid: 8cf19caeee9bb3c43a09d57a2a2ba09d, type: 2}
-  - m_OriginalClip: {fileID: -203655887218126122, guid: 21698bdb2f35d6443ac58b301ea9564d,
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 45ab754bcd407664e84539bb447f3ccf,
       type: 3}
     m_OverrideClip: {fileID: 7400000, guid: db94335d337e94a43962c505a87693c3, type: 2}
-  - m_OriginalClip: {fileID: -203655887218126122, guid: 3eaacdfa2dde6a94a8b49bae858bc777,
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 89d1ba7b5f7b6c648b340c2dab3a853b,
       type: 3}
     m_OverrideClip: {fileID: 7400000, guid: d71581b97fb501e488eb778f198bb010, type: 2}
-  - m_OriginalClip: {fileID: -203655887218126122, guid: e4f99579c9c73f642b1c2dac6a8265df,
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 05217b6ad61772f42bcf228601b98c40,
+      type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 8cf19caeee9bb3c43a09d57a2a2ba09d, type: 2}
+  - m_OriginalClip: {fileID: -203655887218126122, guid: 18e2a02e7751c9343b44964262b71f64,
+      type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 005ef329f9069a341a4c65ac96ebd0c1, type: 2}
+  - m_OriginalClip: {fileID: -203655887218126122, guid: d5b223bffef380143bb5b79ed4671524,
       type: 3}
     m_OverrideClip: {fileID: 7400000, guid: 8662c5c621c785c4b8030eac9758e764, type: 2}
