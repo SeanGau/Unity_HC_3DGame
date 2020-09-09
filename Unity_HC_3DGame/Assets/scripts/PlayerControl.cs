@@ -35,8 +35,8 @@ public class PlayerControl : MonoBehaviour
         float v = Input.GetAxis("Vertical");
 
         Vector3 pos = cam.forward * v + cam.right * h;
-
-        transform.forward = cam.forward;
+        if(h!=0 || v!=0)
+            transform.forward = Vector3.Lerp(transform.forward, cam.forward, 0.5f * turn * Time.deltaTime);
         rig.MovePosition(transform.position + pos * speed * Time.deltaTime);
         anim.SetFloat("move", Mathf.Sqrt(h * h + v * v));
     }
