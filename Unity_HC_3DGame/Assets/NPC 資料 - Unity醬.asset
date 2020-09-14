@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af73841dbfd641b4cb8461001132f0c4, type: 3}
   m_Name: "NPC \u8CC7\u6599 - Unity\u91AC"
   m_EditorClassIdentifier: 
-  typeSpeed: 1
+  typeSpeed: 0.5
   typeSound: {fileID: 8300000, guid: 8d355f9ab15e08a49bb7b1a5b5be7a0e, type: 3}
-  missionRequire: 30
+  missionRequire: 1
   dialogs:
   - "HI\u4F60\u597D\uFF0C\u6211\u9700\u898130\u9846\u7378\u4EBA\u7684\u7259\u9F52\uFF0C\u53EF\u4EE5\u8ACB\u4F60\u5E6B\u6211\u55CE\uFF1F"
   - "\u597D\u50CF\u9084\u4E0D\u523030\u9846\u5440\uFF0C\u9EBB\u7169\u4F60\u4E86\uFF01"

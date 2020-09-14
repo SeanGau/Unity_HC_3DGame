@@ -14,7 +14,7 @@ public class NPCdatas : ScriptableObject
     public float typeSpeed = 1f;
     [Tooltip("打字音效")]
     public AudioClip typeSound;
-    [Tooltip("任務需求數量"), Range(5, 50)]
+    [Tooltip("任務需求數量"), Range(1, 50)]
     public int missionRequire = 30;
     [Tooltip("對話"), TextArea(3, 10)]
     public string[] dialogs = new string[3];
