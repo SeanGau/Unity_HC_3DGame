@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - skull
+  - grunt_attack
   layers:
   - Default
   - TransparentFX

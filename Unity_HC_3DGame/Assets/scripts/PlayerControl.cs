@@ -20,19 +20,29 @@ public class PlayerControl : MonoBehaviour
     public int lv = 1;
 
     public Text missionText;
+    public Image hpImage;
     public AudioClip getSound;
 
+    
     private Animator anim;
     private Rigidbody rig;
     private Transform cam;
     private AudioSource aud;
     private NPC npc;
 
+    private float maxHp;
     private int getCount = 0;
 
     [HideInInspector]
     public bool isStop = false;
 
+
+    public void Hit(float damage, Transform dir)
+    {
+        hp -= damage;
+        rig.AddForce(dir.forward * 100 + dir.up * 100);
+        anim.SetTrigger("trigHurt");
+    }
     private void Awake()
     {
         anim = this.GetComponent<Animator>();
@@ -40,6 +50,7 @@ public class PlayerControl : MonoBehaviour
         aud = this.GetComponent<AudioSource>();
         npc = FindObjectOfType<NPC>();
         cam = GameObject.Find("攝影機根物件").transform;
+        maxHp = hp;
     }
     void GetProp()
     {
@@ -51,16 +62,24 @@ public class PlayerControl : MonoBehaviour
             npc.Finish();
         }
     }
+    void UpdateStatus()
+    {
+        hpImage.fillAmount = hp / maxHp;
+    }
+    
     void Move()
     {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
         Vector3 pos = cam.forward * v + cam.right * h;
-        if(h!=0 || v!=0)
-            transform.forward = Vector3.Lerp(transform.forward, cam.forward, 0.5f * turn * Time.deltaTime);
+        if (h != 0 || v != 0)
+        {
+            Vector3 turnForward = new Vector3(cam.forward.x, 0, cam.forward.z);
+            transform.forward = Vector3.Lerp(transform.forward, turnForward, 0.5f * turn * Time.deltaTime);
+        }
         rig.MovePosition(transform.position + pos * speed * Time.deltaTime);
-        print(pos);
+        //print(pos);
         anim.SetFloat("move", Mathf.Sqrt(h * h + v * v));
     }
     void Start()
@@ -76,6 +95,7 @@ public class PlayerControl : MonoBehaviour
             return;
         }
         Move();
+        UpdateStatus();
     }
 
     private void OnTriggerEnter(Collider other)
