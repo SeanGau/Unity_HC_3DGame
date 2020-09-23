@@ -33,15 +33,26 @@ public class PlayerControl : MonoBehaviour
     private float maxHp;
     private int getCount = 0;
 
+
     [HideInInspector]
     public bool isStop = false;
+    [HideInInspector]
+    public bool isDead = false;
 
-
+    void Dead()
+    {
+        anim.SetBool("isDead", true);
+        isDead = true;
+    }
     public void Hit(float damage, Transform dir)
     {
         hp -= damage;
         rig.AddForce(dir.forward * 100 + dir.up * 100);
         anim.SetTrigger("trigHurt");
+        if(hp <= 0)
+        {
+            Dead();
+        }
     }
     private void Awake()
     {
@@ -64,9 +75,25 @@ public class PlayerControl : MonoBehaviour
     }
     void UpdateStatus()
     {
-        hpImage.fillAmount = hp / maxHp;
+        if(hp <= 0)
+        {
+            hpImage.fillAmount = 0;
+        }
+        else
+        {
+            hpImage.fillAmount = hp / maxHp;
+        }
+            
     }
     
+    void Attack()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            anim.SetTrigger("trigAttack");
+        }
+    }
+
     void Move()
     {
         float h = Input.GetAxis("Horizontal");
@@ -89,17 +116,22 @@ public class PlayerControl : MonoBehaviour
     
     void Update()
     {
-        if (isStop)
+        UpdateStatus();
+        if (isStop || isDead)
         {
             anim.SetFloat("move", 0);
             return;
         }
         Move();
-        UpdateStatus();
+        Attack();
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.tag == "enemy")
+        {
+            other.GetComponent<Enemy>().Hit(attack, transform);
+        }
         if (other.gameObject.tag == "skull")
         {
             aud.PlayOneShot(getSound);

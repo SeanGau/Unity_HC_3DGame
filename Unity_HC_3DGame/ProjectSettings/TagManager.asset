@@ -6,6 +6,8 @@ TagManager:
   tags:
   - skull
   - grunt_attack
+  - hero_attack
+  - enemy
   layers:
   - Default
   - TransparentFX

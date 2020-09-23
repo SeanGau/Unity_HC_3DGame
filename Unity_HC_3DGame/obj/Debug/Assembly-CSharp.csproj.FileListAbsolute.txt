@@ -1,0 +1,2 @@
+F:\SeanGau\Unity_HC_3DGame\Unity_HC_3DGame\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+F:\SeanGau\Unity_HC_3DGame\Unity_HC_3DGame\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache

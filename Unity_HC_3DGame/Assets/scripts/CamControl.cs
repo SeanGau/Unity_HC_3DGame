@@ -10,9 +10,9 @@ public class CamControl : MonoBehaviour
     public Vector2 limit = new Vector2(30, -20);
 
     private Quaternion rot;
-    void Start()
+    void Awake()
     {
-        
+        Cursor.visible = false;
     }
 
     // Update is called once per frame

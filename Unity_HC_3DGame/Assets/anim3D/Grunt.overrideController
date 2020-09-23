@@ -9,9 +9,6 @@ AnimatorOverrideController:
   m_Name: Grunt
   m_Controller: {fileID: 9100000, guid: 2eeb9c266fdc4e14290207ed4dc92d83, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: -203655887218126122, guid: 7d67817daed33784bb3f442e765f625b,
-      type: 3}
-    m_OverrideClip: {fileID: 7400000, guid: f10541572d6d93144ab62d62774e6af5, type: 2}
   - m_OriginalClip: {fileID: -203655887218126122, guid: 45ab754bcd407664e84539bb447f3ccf,
       type: 3}
     m_OverrideClip: {fileID: 7400000, guid: db94335d337e94a43962c505a87693c3, type: 2}
@@ -27,3 +24,5 @@ AnimatorOverrideController:
   - m_OriginalClip: {fileID: -203655887218126122, guid: d5b223bffef380143bb5b79ed4671524,
       type: 3}
     m_OverrideClip: {fileID: 7400000, guid: 8662c5c621c785c4b8030eac9758e764, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 40e755ca7805cfb41a2dc74ca702ca67, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f10541572d6d93144ab62d62774e6af5, type: 2}

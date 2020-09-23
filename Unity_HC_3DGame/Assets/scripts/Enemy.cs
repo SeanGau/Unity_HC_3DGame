@@ -25,16 +25,19 @@ public class Enemy : MonoBehaviour
     public float attackDist = 2.5f;
 
 
-    private Vector3 origPos;     
+    private Vector3 origPos;
+    private float origCool;
     private NavMeshAgent nma;
     private Animator ani;
     private PlayerControl player;
     private float timer = 0;
+    private Rigidbody rig;
 
     bool isTracking = false;
+    bool isDead = false;
     IEnumerator RandWalk()
     {
-        while(true)
+        while(!isDead)
         {
             if (!isTracking && nma.remainingDistance <= attackDist)
             {
@@ -48,13 +51,18 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+    IEnumerator DeadDelay()
+    {
+        yield return new WaitForSeconds(2);
+        Destroy(gameObject);
+    }
     void Move()
     {
         ani.SetFloat("move", nma.velocity.magnitude);
-        if(Vector3.Distance(player.transform.position, transform.position) <= trackDist)
+        if(Vector3.Distance(player.transform.position, transform.position) <= trackDist && !player.isDead)
         {
             Quaternion angle = Quaternion.LookRotation(player.transform.position - transform.position);
-            transform.rotation = Quaternion.Slerp(transform.rotation, angle, Time.deltaTime * 5);
+            transform.rotation = Quaternion.Slerp(transform.rotation, angle, Time.deltaTime * 2.5f);
             nma.speed = speed;
             isTracking = true;
             nma.SetDestination(player.transform.position);
@@ -74,23 +82,38 @@ public class Enemy : MonoBehaviour
             {
                 timer = 0;
                 ani.SetTrigger("trigAttack");
+                cooldown = origCool + Random.Range(-1f, 1f);
             }
         }
     }
 
-    void Hit()
+    public void Hit(float damage, Transform dir)
     {
-
+        hp -= damage;
+        rig.AddForce(dir.forward * 500 + dir.up * 500);
+        ani.SetTrigger("trigHurt");
+        if (hp <= 0)
+        {
+            Dead();
+        }
     }
 
     void Dead()
     {
-
+        ani.SetBool("isDead", true);
+        isDead = true;
+        StartCoroutine(DeadDelay());
+        DropProp();
     }
 
     void DropProp()
     {
+        float r = Random.Range(0f, 1f);
 
+        if(r <= dropPer)
+        {
+            Instantiate(dropItem, transform.position, transform.rotation);
+        }
     }
 
 
@@ -98,10 +121,12 @@ public class Enemy : MonoBehaviour
     {
         nma = GetComponent<NavMeshAgent>();
         ani = GetComponent<Animator>();
+        rig = GetComponent<Rigidbody>();
 
         player = FindObjectOfType<PlayerControl>();
 
         origPos = transform.position;
+        origCool = cooldown;
         nma.stoppingDistance = attackDist;
     }
     void Start()
@@ -111,6 +136,8 @@ public class Enemy : MonoBehaviour
     
     void Update()
     {
+        if (isDead)
+            return;
         Move();
         Attack();
     }
@@ -128,6 +155,6 @@ public class Enemy : MonoBehaviour
         Gizmos.color = new Color(0.8f, 0, 0, 0.5f);
         Gizmos.DrawSphere(transform.position, attackDist);
         Gizmos.color = new Color(0, 0.8f, 0, 0.2f);
-        Gizmos.DrawSphere(transform.position, trackDist);
+        Gizmos.DrawSphere(transform.position + transform.up * 1.5f, trackDist);
     }
 }
